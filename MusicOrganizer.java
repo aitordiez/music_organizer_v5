@@ -195,5 +195,13 @@ public class MusicOrganizer
         }
     }
     
-    
+    /**
+     * Fijar el valor de ese nuevo atributo a un determinado track
+     * del organizador
+     */
+    public void fijarNumeroCanciones(int index, int numeroCanciones)
+    {
+        if(index >= 0 && index< tracks.size())
+        tracks.get(index).setNumeroCanciones(numeroCanciones);
+    }
 }
