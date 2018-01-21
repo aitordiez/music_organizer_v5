@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Iterator;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -15,7 +15,8 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
-
+    
+  
     /**
      * Create a MusicOrganizer
      */
@@ -53,12 +54,14 @@ public class MusicOrganizer
      */
     public void playTrack(int index)
     {
-        if(indexValid(index)) {
-            Track track = tracks.get(index);
-            player.startPlaying(track.getFilename());
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+        
+            if(indexValid(index)) {
+                Track track = tracks.get(index);
+                track.incrementoContador();
+                player.startPlaying(track.getFilename());
+                System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+            }   
         }
-    }
     
     /**
      * Return the number of tracks in the collection.
@@ -107,6 +110,23 @@ public class MusicOrganizer
     }
     
     /**
+     * Enumerar todas las pistas que contengan la cadena de búsqueda
+     * @param searchString La cadena de búsqueda que hay que encontrar
+     */
+    public void findInTitle(String searchString)
+    {
+        for(Track track : tracks) {
+            String title= track.getTitle();
+            if(title.contains(searchString)){
+                System.out.println(track.getDetails());
+            }
+        }
+    
+    }
+    
+    
+    
+    /**
      * Remove a track from the collection.
      * @param index The index of the track to be removed.
      */
@@ -122,17 +142,21 @@ public class MusicOrganizer
      */
     public void playFirst()
     {
-        if(tracks.size() > 0) {
-            player.startPlaying(tracks.get(0).getFilename());
-        }
+        
+            if(tracks.size() > 0) {
+                tracks.get(0).incrementoContador();
+                player.startPlaying(tracks.get(0).getFilename());
+                
+            }
+        
     }
-    
     /**
      * Stop the player.
      */
     public void stopPlaying()
     {
         player.stop();
+        
     }
 
     /**
@@ -170,4 +194,6 @@ public class MusicOrganizer
             addTrack(track);
         }
     }
+    
+    
 }
