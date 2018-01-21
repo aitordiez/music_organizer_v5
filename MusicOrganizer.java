@@ -57,7 +57,6 @@ public class MusicOrganizer
         
             if(indexValid(index)) {
                 Track track = tracks.get(index);
-                track.incrementoContador();
                 player.startPlaying(track.getFilename());
                 System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
             }   
@@ -144,7 +143,6 @@ public class MusicOrganizer
     {
         
             if(tracks.size() > 0) {
-                tracks.get(0).incrementoContador();
                 player.startPlaying(tracks.get(0).getFilename());
                 
             }
