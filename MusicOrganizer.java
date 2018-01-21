@@ -224,4 +224,17 @@ public class MusicOrganizer
           System.out.println("No hay reproducciones");
       }
     }
+    
+    /**
+     * Muestra todos los detalles de todos los tracks almacenados 
+     * en un organizador usando un iterador
+     */
+    public void listAllTrackWithIterator()
+    {
+        Iterator<Track> it = tracks.iterator();
+        while (it.hasNext()){
+            Track i = it.next();
+            System.out.println(i.getDetails());
+        }
+    }
 }
